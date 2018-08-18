@@ -69,6 +69,7 @@ SOURCES
     "src/module/xep/0333_chat_markers.vala"
     "src/module/xep/0368_srv_records_tls.vala"
     "src/module/xep/0380_explicit_encryption.vala"
+    "src/module/xep/0392_consistent_color.vala"
     "src/module/xep/pixbuf_storage.vala"
 PACKAGES
     ${ENGINE_PACKAGES}
@@ -87,7 +88,7 @@ DEPENDS
 add_definitions(${VALA_CFLAGS})
 add_library(xmpp-vala SHARED ${ENGINE_VALA_C})
 add_dependencies(xmpp-vala xmpp-vala-vapi)
-target_link_libraries(xmpp-vala ${ENGINE_PACKAGES})
+target_link_libraries(xmpp-vala ${ENGINE_PACKAGES} m)
 set_target_properties(xmpp-vala PROPERTIES VERSION 0.1 SOVERSION 0)
 
 install(TARGETS xmpp-vala ${TARGET_INSTALL})
@@ -101,6 +102,7 @@ if(BUILD_TESTS)
         "tests/testcase.vala"
 
         "tests/stanza.vala"
+        "tests/color.vala"
     CUSTOM_VAPIS
         ${CMAKE_BINARY_DIR}/exports/xmpp-vala_internal.vapi
     PACKAGES
